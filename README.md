@@ -1,0 +1,1 @@
+pyside6-uic "C:\python\calculator\gui\gui.ui" -o "C:\python\calculator\gui.py"
