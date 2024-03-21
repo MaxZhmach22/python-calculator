@@ -1,12 +1,13 @@
 from PySide6 import QtWidgets
-from oop.ButtonsEnum import ButtonsEnum
+from oop.buttons_enum import ButtonsEnum
 
 
 class LineInfo:
     def __init__(self, window):
         self.__line = window.findChild(QtWidgets.QLineEdit, 'lineEdit')
 
-    def get_line(self):
+    @property
+    def line(self):
         return self.__line
 
 
