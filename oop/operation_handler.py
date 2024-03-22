@@ -1,4 +1,4 @@
-from oop.operation_abstract import Operation
+from oop.operation_abstract import Operation, Minus, Multiply, Divide
 from oop.operation_abstract import Add
 
 
@@ -24,6 +24,10 @@ class OperationHandler:
     def value_b(self, value):
         self.__value_b = value
 
+    @property
+    def operation(self):
+        return self.__operation
+
     def clear(self):
         self.__value_a = 0
         self.__value_b = 0
@@ -38,6 +42,15 @@ class OperationHandler:
     def set_operation(self, operation):
         if operation == 'plus':
             self.__operation = Add()
+        elif operation == 'minus':
+            self.__operation = Minus()
+        elif operation == 'multiply':
+            self.__operation = Multiply()
+        elif operation == 'divide':
+            self.__operation = Divide()
+
 
     def calculate(self):
+        if self.__operation is None:
+            return 0
         return self.__operation.operate(self.__value_a, self.__value_b)

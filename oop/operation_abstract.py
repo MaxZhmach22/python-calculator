@@ -16,6 +16,27 @@ class Add(Operation):
         return summary
 
 
+class Minus(Operation):
+    def operate(self, value_a, value_b):
+        summary = value_a - value_b
+        self.print_result(summary)
+        return summary
+
+
+class Multiply(Operation):
+    def operate(self, value_a, value_b):
+        summary = value_a * value_b
+        self.print_result(summary)
+        return summary
+
+
+class Divide(Operation):
+    def operate(self, value_a, value_b):
+        summary = value_a / value_b
+        self.print_result(summary)
+        return summary
+
+
 class ValueA:
     def __init__(self, value):
         self.__value = value

@@ -6,6 +6,8 @@ from oop.operation_handler import OperationHandler
 
 class ButtonClickHandler:
 
+    __clear_line = False
+
     def __init__(self, buttons_info: ButtonsInfo, line_info: LineInfo):
         self.__operation_handler = OperationHandler()
         self.__buttons_info = buttons_info
@@ -41,22 +43,28 @@ class ButtonClickHandler:
         btn.nine.clicked.connect(lambda: self.press_number(9))
         
     def press_operation_button(self, button: ButtonsEnum):
-        self.__line_info.line.setText('')
         self.__operation_handler.set_operation(button.name)
 
     def press_number(self, number: int):
+        if self.__operation_handler.operation is not None and self.__clear_line is False:
+            self.__line_info.line.setText('')
+            self.__clear_line = True
+
+
         text = self.__line_info.line.text() + str(number)
         self.__line_info.line.setText(text)
-        print('Number Button clicked', text)
         self.__operation_handler.set_value(text)
+        print('Number Button clicked', text)
 
     def press_clear(self, button: ButtonsEnum):
         self.__line_info.line.setText('')
         self.__operation_handler.clear()
+        self.__clear_line = False
         print('Clear Button clicked')
 
     def press_equals(self):
         result = str(self.__operation_handler.calculate())
         print('Equals Button clicked', result)
         self.__line_info.line.setText(result)
+        self.__clear_line = False
    
